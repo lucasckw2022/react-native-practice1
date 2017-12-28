@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Dimensions, Animated, Image } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Animated, Image, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 
@@ -16,29 +16,31 @@ export default class LastChance extends Component {
 
     render (){
         const { favourited } = this.state
-        const { item } = this.props
+        const { item, navigation } = this.props
         return (
             <View style={styles.album}>
-                <View style={styles.imageBackground}>
-                    <Image
-                        source={{uri: item.image}}
-                        style={styles.image}
-                    />
-                <Text style={styles.caption}>{`${item.caption}\n`}<Text style={{fontWeight: 'bold'}}>One step closer</Text></Text>
-                </View>
-                <View style={styles.notification}>
-                    <View style={styles.remainDate}>
-                        <MaterialCommunityIcons name='clock' size={16} style={{paddingRight: 5, color: '#fff'}} />
-                        <Text style={{color: '#fff'}}>{`${moment().diff(moment(item.date, 'x'), 'days')} days left`}</Text>
+                <TouchableOpacity onPress={navigation.state.routeName} >
+                    <View style={styles.imageBackground}>
+                        <Image
+                            source={{uri: item.image}}
+                            style={styles.image}
+                        />
+                    <Text style={styles.caption}>{`${item.caption}\n`}<Text style={{fontWeight: 'bold'}}>One step closer</Text></Text>
                     </View>
-                    <View>
-                        <Ionicons onPress={()=>{this.saveToFavourite()}} name={favourited ? 'md-heart' : 'md-heart-outline'} size={24} style={{color: '#FF6120', marginRight: 10}} />
+                    <View style={styles.notification}>
+                        <View style={styles.remainDate}>
+                            <MaterialCommunityIcons name='clock' size={16} style={{paddingRight: 5, color: '#fff'}} />
+                            <Text style={{color: '#fff'}}>{`${moment().diff(moment(item.date, 'x'), 'days')} days left`}</Text>
+                        </View>
+                        <View>
+                            <Ionicons onPress={()=>{this.saveToFavourite()}} name={favourited ? 'md-heart' : 'md-heart-outline'} size={24} style={{color: '#FF6120', marginRight: 10}} />
+                        </View>
                     </View>
-                </View>
-                <View style={styles.description}>
-                    <Text style={styles.descriptionTitle}>{item.title}</Text>
-                    <Text style={styles.descriptionLabel}>{item.description}</Text>
-                </View>
+                    <View style={styles.description}>
+                        <Text style={styles.descriptionTitle}>{item.title}</Text>
+                        <Text style={styles.descriptionLabel}>{item.description}</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         )
     }

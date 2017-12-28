@@ -59,7 +59,7 @@ export default class Discover extends PureComponent<*, State> {
   );
 
   _renderScene = ({ route }) => (
-    <HotOffers />
+    <HotOffers navigation={this.props.navigation} />
   );
 
   _renderLabel = ({navigationState}) => ({route}) => {

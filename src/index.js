@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Animated, View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
-import Discover from './discover/discover';
+import Discover from './discover/route';
 
 import type { Route, NavigationState } from 'react-native-tab-view/types';
 

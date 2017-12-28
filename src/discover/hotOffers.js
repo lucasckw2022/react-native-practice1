@@ -31,9 +31,10 @@ const lastChance = {
 
 export default class HotOffers extends Component {
     renderLastChanceItem = ({item, index} ) => {
-        return <LastChance item={item} index={index} />
+        return <LastChance item={item} index={index} navigation={this.props.navigation}/>
     }
     render(){
+        const { navigation } = this.props
         const lastChanceData = Object.values(lastChance)
         return(
             <ScrollView style={styles.container}>
